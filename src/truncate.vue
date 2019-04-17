@@ -41,7 +41,7 @@
 </template>
 
 <script>
-const h2p = require('html-truncate');
+const h2p = require('truncate-html');
 
 export default {
   name: 'Truncate',
@@ -90,7 +90,7 @@ export default {
   methods: {
     truncate(string) {
       if (string) {
-        if (this.type === 'html') return h2p(string, this.length);
+        if (this.type === 'html') return h2p(string, this.length, { reserveLastWord: true, excludes: ['img', 'pre', 'script', 'object', 'embed', 'link'] });
 
         return string.toString().substring(0, this.length);
       }
